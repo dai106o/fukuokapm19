@@ -1,0 +1,41 @@
+@@ edit.html.ep
+% layout 'default';
+% if ($id){
+% stash title=>'編集';
+% }else{
+% stash title=>'追加';
+% }
+
+<form method="POST">
+<table>
+% if ($id){
+<tr>
+<th>ID</th>
+<td><%= $id %></td>
+</tr>
+% }
+<tr>
+<th>タイトル</th>
+<td>
+<input type="text" name="title">
+% if(validator_error('title')) {
+<div style="color:red"><%= validator_error('title') %></div>
+% }
+
+</td>
+</tr>
+<th>詳細</th>
+<td>
+<textarea name="detail"></textarea>
+% if(validator_error('detail')) {
+<div style="color:red"><%= validator_error('detail') %></div>
+% }
+</td>
+</tr>
+</table>
+% if ($id){
+<input type="submit" value="編集">
+% }else{
+<input type="submit" value="追加">
+% }
+</form>

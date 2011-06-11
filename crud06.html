@@ -1,0 +1,25 @@
+@@ index.html.ep
+% layout 'default';
+% stash title=>'リスト';
+% if(flash('message')) {
+<div style="color:blue;"><%= flash('message') %></div>
+% }
+
+<a href="<%== url_for('add') %>">追加</a><br />
+<table>
+<tr>
+<th>ID</th>
+<th>タイトル</th>
+<th>詳細</th>
+<th>&nbsp;</th>
+</tr>
+% foreach my $book (@$books) {
+<tr>
+<td><%= $book->id %></td>
+<td><%= $book->title %></td>
+<td><pre><%= $book->detail %></pre></td>
+<td><a href="<%== url_for 'edit/'.$book->id %>">編集</a>&emsp;<a href="<%== url_for 'delete/'.$book->id %>">削除</a></td>
+</tr>
+% }
+</table>
+
